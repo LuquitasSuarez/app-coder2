@@ -1,12 +1,11 @@
 import Item from "../Item/Item"
 
-const ItemList = ({products}) => {
-    return(
-        <>
-            {products.map((product) => (
-                <Item {...product} key={product.id}/>
-            ))}
-        </>
+const ItemList = ({ products }) => {
+
+    return (
+        <ul className="ListGroup">
+            {products.map(product => <Item key={product.id} product={product}/>)}
+        </ul>
     )
 }
 

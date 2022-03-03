@@ -1,37 +1,26 @@
-import {useEffect, useState} from 'react'
-import ItemCount from "../ItemCount/ItemCount"
-import {getProducts} from "../Mock/products"
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import ItemList from '../ItemList/ItemList'
+import { getProducts } from '../Mock/products'
 
-
-const ItemListContainer = ({ greeting='hola mundo'}) => {
+const ItemListContainer = ()=> {
     const [products, setProducts] = useState([])
+    const {categoryId} = useParams ()
     
     useEffect(() => {
-        getProducts
-        .then((resolve) => {
-            setProducts(resolve)
-        })
-        .catch((error) => {
+        getProducts(categoryId).then(item => {
+            setProducts(item)
+        }).catch(error  => {
             console.log(error)
-        })
-        .finally(() => {
-            //ejecutar siempre
-        })
-    }, [])
-
-    const handleOnAdd = (count) => {
-        console.log(`Se agregaron ${count} productos`)
-    }
-
-
-    return(
-        <div>
-            <h1>{greeting}</h1>
-            <ItemCount stock={5} initial={1} onAdd={handleOnAdd}/>
+        })   
+    }, [categoryId])
+    
+    return (
+        <div className="ItemListContainer">
             <ItemList products={products}/>
         </div>
-    )
+    )    
+    
 }
 
 export default ItemListContainer

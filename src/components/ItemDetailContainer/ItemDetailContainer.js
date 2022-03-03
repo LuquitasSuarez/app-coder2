@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react'
+import { useState, useEffect } from 'react'
+import ItemDetail from '../ItemDetail/ItemDetail'
 import {getProduct} from "../Mock/products";
-import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom'
 
 const ItemDetailContainer = () => {
@@ -20,11 +20,11 @@ const ItemDetailContainer = () => {
         })
 
     }, [productId])
-    console.log('hola')
+
 
     return (
         <div className="ItemDetailContainer" >
-            <ItemDetail {...product} key={product.id}/>
+            <ItemDetail  product={product}/>
         </div>
     )    
 }
