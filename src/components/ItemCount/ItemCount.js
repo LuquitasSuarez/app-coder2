@@ -1,5 +1,7 @@
 import {useState} from 'react'
+import './ItemCount.css'
 
+/*
 const ItemCount = ({stock, initial, onAdd}) => {
     const [count, setCount] = useState(initial)
     
@@ -13,19 +15,31 @@ const ItemCount = ({stock, initial, onAdd}) => {
         if(count < stock){
             setCount(count + 1)
         }
+    }*/
+const ItemCount = ({stock, initial, onAdd}) => {
+    const [count, setCount] = useState(initial);
+    
+    const decrement = () => {
+        if(count > 1){
+        setCount(count - 1);
+        }
     }
     
-
+    const increment = () => {
+        if(count < stock){
+            setCount(count + 1);
+        }
+    }
+    
     return(
     <>
-        <h3 className='border border-3 rounded-pill w-25 p-3 h-25 d-inline-block'>Item Count</h3>
         <div className='container'>
             <div className='row justify-content-md-center'>
                 <button className='col col-lg-2 btn btn-primary btn-sm' type="button" onClick={decrement}>-</button>
-                <h3 className='col-md-auto'>{count}</h3>
+                <label className='col-md-auto'>{count}</label>
                 <button className='col col-lg-2 btn btn-primary btn-sm' type="button" onClick={increment}>+</button>
-                <div>
-                    <button className='border border-3 rounded-pill w-25 p-3 h-25 d-inline-block h6' onClick={() => onAdd(count)}>Agregar al carrito</button>
+                <div className='div'>
+                    <button className='div_button' onClick={() => onAdd(count)}>Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -34,3 +48,43 @@ const ItemCount = ({stock, initial, onAdd}) => {
 }
 
 export default ItemCount
+/*
+import React from "react";
+import {useState} from "react";
+import './_ItemCount.scss';
+
+const ItemCount = ({stock, initial, onAdd}) => {
+
+    const [count, setCount] = useState(initial);
+
+    const decrement = () => {
+
+    if(count > 1){
+      setCount(count - 1);
+
+    }
+  }
+
+  const increment = () => {
+    if(count < stock){
+      setCount(count + 1);
+    }
+    
+  }
+
+  return(
+    <>
+      <div className="counter-button">
+        <button className="boton--secundario" onClick={decrement}>-</button>
+        <label>{count}</label>
+        <button className="boton--secundario" onClick={increment}>+</button>
+      </div>
+      
+      <button className="boton boton--primario" onClick={() => onAdd(count)}>Agregar al carrito</button>
+    </>
+  );
+
+}
+
+export default ItemCount;
+*/
